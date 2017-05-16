@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yzc.comicreader.ui.activity.ReaderActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvBookPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarReader"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/gray_white"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray_white"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatSeekBar
+                    android:id="@+id/sbChangePage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="4dp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tvProcess"
+                    android:layout_width="48dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btnPrew"
+                    android:drawableTop="@mipmap/ic_page_previous"
+                    android:text="@string/read_prew"
+                    style="@style/read_btn_style" />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btnMode"
+                    android:drawableTop="@mipmap/ic_read_mode_swipe"
+                    android:text="@string/read_mode_swipe"
+                    style="@style/read_btn_style" />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btnStyle"
+                    android:drawableTop="@mipmap/ic_read_style_light"
+                    android:text="@string/read_style_light"
+                    style="@style/read_btn_style" />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btnNext"
+                    android:drawableTop="@mipmap/ic_page_next"
+                    android:text="@string/read_next"
+                    style="@style/read_btn_style" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <View
+        android:id="@+id/nightView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:background="@color/night_mode_color"/>
+</FrameLayout>

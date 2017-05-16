@@ -1,0 +1,170 @@
+<resources>
+    <string name="app_name">ComicReader</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="title_activity_guide">Guide of ComicReader</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="start_to_experience">Start to Experience</string>
+    <string name="title_activity_book_collection">Book Collection</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- FileChooserDialog -->
+    <string name="access_error">Access Error!</string>
+    <string name="over_file_size_limit">Over File size Limit!</string>
+    <string name="choose_correct_file">Choose correct file.</string>
+    <string name="folder">Folder</string>
+    <string name="ok">OK</string>
+
+    <!--DeCompressMessage -->
+    <string name="progress_title">Decompress File</string>
+    <string name="progress_message">Decompressing, Please wait...</string>
+    <string name="msg_ret_success">Success</string>
+    <string name="msg_ret_warning">Warning (Non fatal error(s))</string>
+    <string name="msg_ret_fault">Fatal error </string>
+    <string name="msg_ret_command">Command line error</string>
+    <string name="msg_ret_memmory">Not enough memory for operation</string>
+    <string name="msg_ret_user_stop">User stopped the process</string>
+    <string name="read_prew">Prew</string>
+    <string name="read_next">Next</string>
+    <string name="read_mode_scroll">Scroll</string>
+    <string name="read_style_light">Light</string>
+    <string name="read_style_dark">Dark</string>
+    <string name="read_mode_swipe">Swipe</string>
+    <string name="analyse_title">Analyse ComicFile</string>
+    <string name="analyse_message">Analysing, Please wait...</string>
+    <string name="add_book_success">Add ComicBook Success!</string>
+    <string name="add_book_failure">Add ComicBook Failure!</string>
+    <string name="about_msg">\tThis is a design using Materil Design local comic file reader. Support for the decompression of the password zip, RAR and 7z compression format for the compression and decompression of the interpretation of the final reading. The reading interface supports two kinds of reading modes: sliding page turning and rolling browsing. Application rights clean, only the use of the device to read and write permissions for development, you can rest assured that the use of. \nAuthor: Yuzhicong \nGithub:https://github.com/yuzhicong</string>
+    <string name="remove_book_success">Already remove this book!</string>
+    <string name="remove_book_title">Remove Book</string>
+    <string name="remove_book_message">Are you sure to remove this book from the Book Collection?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="file_already_add">File already add to BookCollection!</string>
+    <string name="choose_a_comic_file">Choose a Comic file</string>
+    <string name="close">Close</string>
+    <string name="sort">sort</string>
+    <string name="sort_by_title">sort by title</string>
+    <string name="sort_by_adding_time_asc">sort by time Asc</string>
+    <string name="sort_by_adding_time_desc">sort by time Desc</string>
+    <string name="about">About</string>
+    <string name="settings">Settings</string>
+    <string name="book_collection">Book Collection</string>
+    <string name="password_library">Password Library</string>
+    <string name="add_password_title">Add Decompress Password</string>
+    <string name="source_empty_message">Source Name can`t be empty!</string>
+    <string name="password_empty_message">Password can`t be empty!</string>
+    <string name="add_password_success">Add Password Date Success!</string>
+    <string name="edit_password_data_success">Edit Password Data Success!</string>
+    <string name="remove_password_title">Remove Password</string>
+    <string name="remove_password_message">Are you sure to remove this password from the Decompress Password?</string>
+    <string name="edit_password_title">Edit Decompress Password</string>
+    <string name="use_password_library_to_match">use password library to match</string>
+    <string name="this_comic_file_need_password">This comic file need password</string>
+    <string name="app_descript">A Simple Local Comic File Reader</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="source_name">Source Name</string>
+    <string name="password">Password</string>
+    <string name="decompress_password">decompress password</string>
+
+
+    <string name="default_order_mode">Default Order Mode</string>
+    <string-array name="pref_order_mode_list_titles">
+        <item>sort by time Asc</item>
+        <item>sort by time Desc</item>
+        <item>sort by title</item>
+    </string-array>
+    <string-array name="pref_order_mode_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="settings_language">Language</string>
+    <string-array name="pref_language">
+        <item>Auto</item>
+        <item>English</item>
+        <item>简体中文</item>
+        <item>繁体中文</item>
+    </string-array>
+
+    <string name="auto">auto</string>
+    <string-array name="pref_language_values">
+        <item>auto</item>
+        <item>en</item>
+        <item>zh</item>
+        <item>zh-rTW</item>
+    </string-array>
+
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+    <string name="menu_others">Others</string>
+
+</resources>

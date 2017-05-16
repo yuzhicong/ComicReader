@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">漫阅</string>
+    <string name="read_next">下一页</string>
+    <string name="read_prew">上一页</string>
+    <string name="read_mode_scroll">滚动浏览</string>
+    <string name="read_style_light">日间模式</string>
+    <string name="read_mode_swipe">翻页浏览</string>
+    <string name="about">关于</string>
+    <string name="access_error">访问出错</string>
+    <string name="action_settings">设置</string>
+    <string name="add_book_failure">添加漫画书失败！</string>
+    <string name="add_book_success">添加漫画书成功！</string>
+    <string name="add_password_success">添加密码数据成功！</string>
+    <string name="add_password_title">添加解压密码</string>
+    <string name="analyse_message">分析中，请稍后...</string>
+    <string name="analyse_title">分析漫画文件</string>
+    <string name="book_collection">漫画书库</string>
+    <string name="cancel">取消</string>
+    <string name="choose_a_comic_file">选择一个漫画文件</string>
+    <string name="choose_correct_file">请选择正确的文件。</string>
+    <string name="close">关闭</string>
+    <string name="edit_password_data_success">修改密码数据成功！</string>
+    <string name="edit_password_title">编辑解压密码</string>
+    <string name="file_already_add">文件已经添加进漫画收藏中</string>
+    <string name="folder">目录</string>
+    <string name="ok">确定</string>
+    <string name="password_empty_message">密码不能为空！</string>
+    <string name="password_library">解压密码库</string>
+    <string name="progress_message">解压中，请稍后...</string>
+    <string name="progress_title">解压文件</string>
+    <string name="read_style_dark">夜间模式</string>
+    <string name="remove_book_message">你确定从漫画收藏中移除此漫画吗？</string>
+    <string name="remove_book_success">已经移除此漫画书！</string>
+    <string name="remove_book_title">移除漫画</string>
+    <string name="remove_password_message">你确定从解压密码库中移除此密码吗？</string>
+    <string name="remove_password_title">移除解压密码</string>
+    <string name="settings">设置</string>
+    <string name="sort">排序</string>
+    <string name="sort_by_adding_time_asc">按添加时间升序</string>
+    <string name="sort_by_adding_time_desc">按添加时间降序</string>
+    <string name="sort_by_title">按标题排序</string>
+    <string name="source_empty_message">来源名称不能为空！</string>
+    <string name="start_to_experience">开始体验吧</string>
+    <string name="this_comic_file_need_password">这个漫画文件需要密码</string>
+    <string name="title_activity_book_collection">漫画收藏</string>
+    <string name="yes">好的</string>
+    <string name="app_descript">一个简洁的本地漫画阅读器</string>
+    <string name="about_msg">\t这是一款使用Materil Design设计的本地漫画文件阅读器。支持对含有压缩密码的zip，rar和7z压缩格式的漫画压缩包进行解压并解析，最终进行阅览。阅读界面支持滑动翻页和滚动浏览两种阅读模式。应用权限干净，仅使用对设备的读写权限进行开发，可放心使用。\n作者：Yuzhicong \nGithub：https://github.com/yuzhicong</string>
+    <string name="source_name">资源名称</string>
+    <string name="password">密码</string>
+
+    <string name="default_order_mode">默认排序模式</string>
+    <string-array name="pref_order_mode_list_titles">
+        <item>按添加时间升序</item>
+        <item>按添加时间降序</item>
+        <item>按标题排序</item>
+    </string-array>
+    <string-array name="pref_order_mode_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="settings_language">语言</string>
+    <string-array name="pref_language">
+        <item>跟随系统</item>
+        <item>English</item>
+        <item>简体中文</item>
+        <item>繁体中文</item>
+    </string-array>
+
+    <string name="decompress_password">解压密码</string>
+    <string name="use_password_library_to_match">使用密码库去匹配</string>
+    <string name="menu_others">其它</string>
+</resources>

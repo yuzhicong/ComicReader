@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_book_collection"
+            android:icon="@drawable/ic_menu_book_collection"
+            android:title="@string/book_collection" />
+
+        <item
+            android:id="@+id/nav_decompress_password"
+            android:icon="@drawable/ic_menu_decompress_password"
+            android:title="@string/password_library"
+            />
+    </group>
+
+    <item android:title="@string/menu_others">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_menu_settings"
+                android:title="@string/settings" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_menu_about"
+                android:title="@string/about"
+                />
+        </menu>
+    </item>
+
+</menu>

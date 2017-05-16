@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yzc.comicreader">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.yzc.comicreader.config.GlideConfiguration"
+            android:value="GlideModule" />
+
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:label="@string/app_name" />
+
+        <activity
+            android:name=".ui.activity.BookCollectionActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity-alias
+            android:name=".SaSuKeActivity"
+            android:enabled="false"
+            android:icon="@mipmap/ic_sasuke"
+            android:label="@string/app_name"
+            android:targetActivity=".ui.activity.BookCollectionActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".SaKuRaActivity"
+            android:enabled="false"
+            android:icon="@mipmap/ic_sakura"
+            android:label="@string/app_name"
+            android:targetActivity=".ui.activity.BookCollectionActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name=".RockLeeActivity"
+            android:enabled="false"
+            android:icon="@mipmap/ic_rocklee"
+            android:label="@string/app_name"
+            android:targetActivity=".ui.activity.BookCollectionActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity
+            android:name=".ui.activity.GuideActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_guide"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".ui.activity.ReaderActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.AboutActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".ui.activity.BookCollectionActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.yzc.comicreader.ui.activity.BookCollectionActivity" />
+        </activity>
+    </application>
+
+</manifest>
