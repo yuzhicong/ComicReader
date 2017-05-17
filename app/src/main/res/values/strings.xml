@@ -77,7 +77,7 @@
     <string name="decompress_password">decompress password</string>
 
 
-    <string name="default_order_mode">Default Order Mode</string>
+    <string name="default_order_mode">ComicBook order mode</string>
     <string-array name="pref_order_mode_list_titles">
         <item>sort by time Asc</item>
         <item>sort by time Desc</item>
@@ -96,13 +96,25 @@
         <item>简体中文</item>
         <item>繁体中文</item>
     </string-array>
-
-    <string name="auto">auto</string>
     <string-array name="pref_language_values">
         <item>auto</item>
         <item>en</item>
         <item>zh</item>
         <item>zh-rTW</item>
+    </string-array>
+
+    <string-array name="pref_theme">
+        <item>Naruto Orange</item>
+        <item>Sasuke Blue</item>
+        <item>Sakura Pink</item>
+        <item>Rock Lee Green</item>
+    </string-array>
+
+    <string-array name="pref_theme_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
     </string-array>
 
 
@@ -166,5 +178,7 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="menu_others">Others</string>
+    <string name="high_quality_picture_mode">High quality picture mode</string>
+    <string name="high_quality_picture_mode_summary">Using high quality mode to load pictures may affect application performance</string>
 
 </resources>

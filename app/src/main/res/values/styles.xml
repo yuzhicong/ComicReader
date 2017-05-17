@@ -7,14 +7,40 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:icon">@mipmap/ic_launcher</item>
+
+        <item name="android:startColor">#ef8b47</item>
+        <item name="android:centerColor">#f59d64</item>
+        <item name="android:endColor">#f5ad7e</item>
+    </style>
+
+    <style name="AppThemeSasuke" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/sasuke_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/sasuke_colorPrimaryDark</item>
+        <item name="colorAccent">@color/sasuke_colorAccent</item>
+        <item name="android:icon">@mipmap/ic_sasuke</item>
+
+    </style>
+
+    <style name="AppThemeSakura" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/sakura_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/sakura_colorPrimaryDark</item>
+        <item name="colorAccent">@color/sakura_colorAccent</item>
+        <item name="android:icon">@mipmap/ic_sakura</item>
+
+    </style>
+
+    <style name="AppThemeRockLee" parent="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/rocklee_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/rocklee_colorPrimaryDark</item>
+        <item name="colorAccent">@color/rocklee_colorAccent</item>
+        <item name="android:icon">@mipmap/ic_rocklee</item>
+
     </style>
 
     <style name="AppThemeDialog" parent="Theme.AppCompat.Light.Dialog">
-        <!--<item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:backgroundDimEnabled">false</item>-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>

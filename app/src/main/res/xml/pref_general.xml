@@ -1,11 +1,23 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="example_switch"
+    <ListPreference
+        android:key="app_theme"
+        android:entries="@array/pref_theme"
+        android:entryValues="@array/pref_theme_values"
+        android:defaultValue="0"
+        android:title="Theme"
         android:icon="@null"
-        android:summary="使用高质量去解析图片文件，将会对应用性能有影响"
-        android:title="使用高质量图片模式" />
+        android:negativeButtonText="@null"
+        />
+
+    <ListPreference
+        android:key="app_language"
+        android:entries="@array/pref_language"
+        android:entryValues="@array/pref_language_values"
+        android:title="@string/settings_language"
+        android:icon="@null"
+        android:negativeButtonText="@null"
+        />
 
     <ListPreference
         android:defaultValue="-1"
@@ -15,17 +27,13 @@
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
         android:title="@string/default_order_mode"
-        android:summary="漫画书库列表项排列的顺序"
         android:icon="@null"/>
 
-    <ListPreference
-        android:key="app_language"
-        android:entries="@array/pref_language"
-        android:entryValues="@array/pref_language_values"
-        android:defaultValue="@string/auto"
-        android:title="@string/settings_language"
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="example_switch"
         android:icon="@null"
-        android:negativeButtonText="@null"
-        />
+        android:summary="@string/high_quality_picture_mode_summary"
+        android:title="@string/high_quality_picture_mode" />
 
 </PreferenceScreen>

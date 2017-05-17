@@ -38,12 +38,12 @@
 
                 <ImageView
                     android:id="@+id/app_logo"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
                     android:layout_centerHorizontal="true"
                     android:layout_margin="16dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/app_logo"/>
+                    android:src="?android:icon"/>
 
                 <TextView
                     android:id="@+id/app_name"
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/app_name"
                     android:layout_centerHorizontal="true"
-                    android:text="1.0"
+                    android:text="ver 1.0"
                     android:textColor="@color/white"
                     android:textSize="14dp"/>
 

@@ -4,6 +4,18 @@
     <color name="colorPrimaryDark">#EF7624</color>
     <color name="colorAccent">#E51C23</color>
 
+    <color name="sasuke_colorPrimary">#676E81</color>
+    <color name="sasuke_colorPrimaryDark">#545A69</color>
+    <color name="sasuke_colorAccent">#00A2E8</color>
+
+    <color name="sakura_colorPrimary">#EE9583</color>
+    <color name="sakura_colorPrimaryDark">#DC6369</color>
+    <color name="sakura_colorAccent">#FC9CB7</color>
+
+    <color name="rocklee_colorPrimary">#259B24</color>
+    <color name="rocklee_colorPrimaryDark">#487B56</color>
+    <color name="rocklee_colorAccent">#22B14C</color>
+
     <color name="black_overlay">#66000000</color>
     <color name="gray_white">#88c1c1c1</color>
     <color name="white">#FFFFFF</color>

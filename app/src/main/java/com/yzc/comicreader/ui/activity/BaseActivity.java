@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 
+import com.yzc.comicreader.R;
 import com.yzc.comicreader.util.Util;
 
 import java.util.Locale;
@@ -19,10 +20,12 @@ import java.util.Locale;
 public abstract class BaseActivity extends AppCompatActivity {
 
     private String language;
+    private String theme;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         changeAppLanguage();
+        initTheme();
     }
 
     public void changeAppLanguage() {
@@ -44,10 +47,36 @@ public abstract class BaseActivity extends AppCompatActivity {
         res.updateConfiguration(conf, dm);
     }
 
+    public void initTheme(){
+        theme = Util.getStringPreference(this,"app_theme");
+        switch (theme){
+            case "0":{
+                setTheme(R.style.AppTheme_NoActionBar);
+                break;
+            }
+            case "1":{
+                setTheme(R.style.AppThemeSasuke);
+                break;
+            }
+            case "2":{
+                setTheme(R.style.AppThemeSakura);
+                break;
+            }
+            case "3":{
+                setTheme(R.style.AppThemeRockLee);
+                break;
+            }
+            default:{
+                setTheme(R.style.AppTheme_NoActionBar);
+                break;
+            }
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        if(!language.equals(Util.getStringPreference(this,"app_language"))){
+        if(!language.equals(Util.getStringPreference(this,"app_language"))||!theme.equals(Util.getStringPreference(this,"app_theme"))){
             recreate();
         }
     }

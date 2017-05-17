@@ -50,7 +50,7 @@
     <string name="source_name">资源名称</string>
     <string name="password">密码</string>
 
-    <string name="default_order_mode">默认排序模式</string>
+    <string name="default_order_mode">漫画排序模式</string>
     <string-array name="pref_order_mode_list_titles">
         <item>按添加时间升序</item>
         <item>按添加时间降序</item>
