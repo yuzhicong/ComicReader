@@ -180,5 +180,6 @@
     <string name="menu_others">Others</string>
     <string name="high_quality_picture_mode">High quality picture mode</string>
     <string name="high_quality_picture_mode_summary">Using high quality mode to load pictures may affect application performance</string>
+    <string name="settings_theme">Theme</string>
 
 </resources>

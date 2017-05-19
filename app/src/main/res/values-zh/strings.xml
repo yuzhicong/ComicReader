@@ -70,7 +70,17 @@
         <item>繁体中文</item>
     </string-array>
 
+    <string-array name="pref_theme">
+        <item>鸣人橙</item>
+        <item>佐助蓝</item>
+        <item>小樱粉</item>
+        <item>小李绿</item>
+    </string-array>
+
     <string name="decompress_password">解压密码</string>
     <string name="use_password_library_to_match">使用密码库去匹配</string>
     <string name="menu_others">其它</string>
+    <string name="settings_theme">主题</string>
+    <string name="high_quality_picture_mode">高质量绘图模式</string>
+    <string name="high_quality_picture_mode_summary">使用高质量模式去加载图片可能影响应用性能</string>
 </resources>

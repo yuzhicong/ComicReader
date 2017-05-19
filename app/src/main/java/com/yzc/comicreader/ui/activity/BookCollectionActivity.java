@@ -1,8 +1,10 @@
 package com.yzc.comicreader.ui.activity;
 
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,7 +24,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
+import com.yzc.comicreader.App;
 import com.yzc.comicreader.R;
 import com.yzc.comicreader.adapter.BookCollectionAdapter;
 import com.yzc.comicreader.adapter.DecompressPasswordAdapter;
@@ -31,6 +35,7 @@ import com.yzc.comicreader.database.ComicDbHelper;
 import com.yzc.comicreader.ui.fragment.AddPasswordFragment;
 import com.yzc.comicreader.ui.fragment.DecompressPasswordInputFragment;
 import com.yzc.comicreader.ui.fragment.InternalStorageListFragment;
+import com.yzc.comicreader.util.Util;
 import com.yzc.comicreader.util.ZipCommandUtil;
 import com.yzc.comicreader.util.ZipProcess;
 
@@ -67,8 +72,12 @@ public class BookCollectionActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_collection);
         ButterKnife.bind(this);
-
         setSupportActionBar(toolbar);
+        setNavBarBackground();
+        if(((App)getApplication()).startTheme == null){
+            ((App)getApplication()).startTheme = this.theme;
+            Log.e("BookCollection","startTheme : " + this.theme);
+        }
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +104,7 @@ public class BookCollectionActivity extends BaseActivity
         navigationView.setNavigationItemSelectedListener(this);
         MenuItem menuItem = (MenuItem) navigationView.getMenu().findItem(R.id.nav_book_collection);
         menuItem.setChecked(true);
+
 
         adapter = new BookCollectionAdapter(getApplicationContext(),ComicDbHelper.getComicDBHelper(this).queryComicBook(null));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
@@ -145,8 +155,39 @@ public class BookCollectionActivity extends BaseActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            if(!((App)getApplication()).startTheme.equals(this.theme)){
+                changeAppIcon(this.theme);
+            }
             super.onBackPressed();
         }
+    }
+
+    public void setNavBarBackground(){
+        String theme = Util.getStringPreference(this,"app_theme");
+        int backgroundId;
+        switch (theme){
+            case "0":{
+                backgroundId = R.drawable.side_nav_bar;
+                break;
+            }
+            case "1":{
+                backgroundId = R.drawable.side_nav_bar_sasuke;
+                break;
+            }
+            case "2":{
+                backgroundId = R.drawable.side_nav_bar_sakura;
+                break;
+            }
+            case "3":{
+                backgroundId = R.drawable.side_nav_bar_rocklee;
+                break;
+            }
+            default:{
+                backgroundId = R.drawable.side_nav_bar;
+                break;
+            }
+        }
+        ((LinearLayout)navigationView.getHeaderView(0).findViewById(R.id.nav_bar)).setBackgroundResource(backgroundId);
     }
 
     @Override
@@ -320,4 +361,67 @@ public class BookCollectionActivity extends BaseActivity
         super.onActivityResult(requestCode, resultCode, data);
 
     }
+
+
+    public void changeAppIcon(String theme){
+
+        PackageManager pm = getPackageManager();
+        Log.e("BookCollection","startTheme : " + ((App)getApplication()).startTheme + " localTheme : " + theme);
+        switch (((App)getApplication()).startTheme){
+            case "0":{
+                pm.setComponentEnabledSetting(new ComponentName(this,"com.yzc.comicreader.ui.activity.BookCollectionActivity"),
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+                break;
+            }
+            case "1":{
+                pm.setComponentEnabledSetting(new ComponentName(this, "com.yzc.comicreader.SaSuKeActivity"),
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+                break;
+            }
+            case "2":{
+                pm.setComponentEnabledSetting(new ComponentName(this, "com.yzc.comicreader.SaKuRaActivity"),
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+                break;
+            }
+            case "3":{
+                pm.setComponentEnabledSetting(new ComponentName(this, "com.yzc.comicreader.RockLeeActivity"),
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+                break;
+            }
+            default:{
+                pm.setComponentEnabledSetting(new ComponentName(this, "com.yzc.comicreader.ui.activity.BookCollectionActivity"),
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+                break;
+            }
+        }
+        switch (theme){
+            case "0":{
+                pm.setComponentEnabledSetting(new ComponentName(this, "com.yzc.comicreader.ui.activity.BookCollectionActivity"),
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+                break;
+            }
+            case "1":{
+                pm.setComponentEnabledSetting(new ComponentName(this, "com.yzc.comicreader.SaSuKeActivity"),
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+                break;
+            }
+            case "2":{
+                pm.setComponentEnabledSetting(new ComponentName(this, "com.yzc.comicreader.SaKuRaActivity"),
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+                break;
+            }
+            case "3":{
+                pm.setComponentEnabledSetting(new ComponentName(this, "com.yzc.comicreader.RockLeeActivity"),
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+                break;
+            }
+            default:{
+                pm.setComponentEnabledSetting(new ComponentName(this, "com.yzc.comicreader.ui.activity.BookCollectionActivity"),
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+                break;
+            }
+        }
+        ((App)getApplication()).startTheme = this.theme;
+    }
+
 }

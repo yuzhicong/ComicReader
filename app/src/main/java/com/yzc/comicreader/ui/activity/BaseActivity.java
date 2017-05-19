@@ -20,7 +20,7 @@ import java.util.Locale;
 public abstract class BaseActivity extends AppCompatActivity {
 
     private String language;
-    private String theme;
+    protected String theme;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

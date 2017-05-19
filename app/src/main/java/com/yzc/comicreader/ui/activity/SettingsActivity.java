@@ -2,8 +2,10 @@ package com.yzc.comicreader.ui.activity;
 
 
 import android.annotation.TargetApi;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.media.Ringtone;
@@ -19,10 +21,13 @@ import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
+import android.widget.LinearLayout;
 
 import com.yzc.comicreader.R;
 import com.yzc.comicreader.util.Util;
@@ -49,6 +54,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     private ListPreference lpAppLanguage;
     private ListPreference lpTheme;
     private String language;
+    private String theme;
 
     private Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
@@ -74,6 +80,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     if(needRecreat)
                         recreate();
                 }
+                if(preference.getKey().equals("app_theme")){
+                    if(!theme.equals(stringValue)){
+                        recreate();
+                    }
+                }
             } else if (preference instanceof SwitchPreference) {
 
 
@@ -90,8 +101,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         changeAppLanguage();
-        setupActionBar();
-        getSupportActionBar().setTitle(R.string.settings);
+        initTheme();
+        //setupActionBar();
+        //getSupportActionBar().setTitle(R.string.settings);
+        LinearLayout root = (LinearLayout) findViewById(android.R.id.list).getParent().getParent().getParent();
+        Toolbar toolbar = (Toolbar) LayoutInflater.from(this).inflate(R.layout.activity_settings_toolbar, root, false);
+        toolbar.setTitle(R.string.settings);
+        root.addView(toolbar,0);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         addPreferencesFromResource(R.xml.pref_general);
 
         lpAppLanguage = (ListPreference) findPreference("app_language");
@@ -121,7 +141,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         int id = item.getItemId();
         if (id == android.R.id.home) {
             if (!super.onMenuItemSelected(featureId, item)) {
-                NavUtils.navigateUpFromSameTask(this);
+                this.finish();
+                //NavUtils.navigateUpFromSameTask(this);
             }
             return true;
         }
@@ -144,5 +165,31 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             conf.locale = new Locale(sta);}
         }
         res.updateConfiguration(conf, dm);
+    }
+
+    public void initTheme(){
+        theme = Util.getStringPreference(this,"app_theme");
+        switch (theme){
+            case "0":{
+                setTheme(R.style.AppTheme_NoActionBar);
+                break;
+            }
+            case "1":{
+                setTheme(R.style.AppThemeSasuke);
+                break;
+            }
+            case "2":{
+                setTheme(R.style.AppThemeSakura);
+                break;
+            }
+            case "3":{
+                setTheme(R.style.AppThemeRockLee);
+                break;
+            }
+            default:{
+                setTheme(R.style.AppTheme_NoActionBar);
+                break;
+            }
+        }
     }
 }

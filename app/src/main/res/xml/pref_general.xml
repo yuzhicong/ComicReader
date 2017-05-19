@@ -5,7 +5,7 @@
         android:entries="@array/pref_theme"
         android:entryValues="@array/pref_theme_values"
         android:defaultValue="0"
-        android:title="Theme"
+        android:title="@string/settings_theme"
         android:icon="@null"
         android:negativeButtonText="@null"
         />
