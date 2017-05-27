@@ -79,6 +79,9 @@ public class BookCollectionActivity extends BaseActivity
             Log.e("BookCollection","startTheme : " + this.theme);
         }
 
+        if(savedInstanceState != null){
+        isSelectPassword = savedInstanceState.getBoolean("isSelectPassword",false);}
+
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,8 +148,7 @@ public class BookCollectionActivity extends BaseActivity
 
             }
         });
-
-        getSupportActionBar().setTitle(R.string.book_collection);
+        setFuntionView();
     }
 
     @Override
@@ -245,26 +247,13 @@ public class BookCollectionActivity extends BaseActivity
 
         switch (id){
             case R.id.nav_book_collection:{
-                rvBookCollection.setVisibility(View.VISIBLE);
-                rvPassword.setVisibility(View.GONE);
-                toolbar.setTitle(R.string.book_collection);
                 isSelectPassword = false;
-                invalidateOptionsMenu();
+                setFuntionView();
                 break;
             }
             case R.id.nav_decompress_password:{
-                rvBookCollection.setVisibility(View.GONE);
-                rvPassword.setVisibility(View.VISIBLE);
-                toolbar.setTitle(R.string.password_library);
                 isSelectPassword = true;
-                invalidateOptionsMenu();
-                if(passwordAdapter == null){
-                    passwordAdapter = new DecompressPasswordAdapter(this);
-                    LinearLayoutManager lLayoutManager = new LinearLayoutManager(getApplicationContext());
-                    lLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                    rvPassword.setLayoutManager(lLayoutManager);
-                    rvPassword.setAdapter(passwordAdapter);
-                }
+                setFuntionView();
                 break;
             }
             case R.id.nav_settings:{
@@ -277,17 +266,52 @@ public class BookCollectionActivity extends BaseActivity
             }
         }
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void setFuntionView(){
+        if(!isSelectPassword){
+            rvBookCollection.setVisibility(View.VISIBLE);
+            rvPassword.setVisibility(View.GONE);
+            toolbar.setTitle(R.string.book_collection);
+            isSelectPassword = false;
+            invalidateOptionsMenu();
+        }else{
+            rvBookCollection.setVisibility(View.GONE);
+            rvPassword.setVisibility(View.VISIBLE);
+            toolbar.setTitle(R.string.password_library);
+            isSelectPassword = true;
+            invalidateOptionsMenu();
+            if(passwordAdapter == null){
+                passwordAdapter = new DecompressPasswordAdapter(this);
+                LinearLayoutManager lLayoutManager = new LinearLayoutManager(getApplicationContext());
+                lLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                rvPassword.setLayoutManager(lLayoutManager);
+                rvPassword.setAdapter(passwordAdapter);
+            }
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("isSelectPassword",isSelectPassword);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        //isSelectPassword = savedInstanceState.getBoolean("isSelectPassword");
+        //setFuntionView();
     }
 
     @Override
     public void onFragmentInteraction(final String dirPath) {
         Log.e("activity","收到选择文件：" + dirPath);
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
-        getSupportFragmentManager().popBackStackImmediate("",1);
+        getSupportFragmentManager().popBackStackImmediate("Choose a Comic file:",1);
         if (fragments != null) {
             for (Fragment fragment : fragments) {
                 getSupportFragmentManager().beginTransaction().remove(fragment).commit();

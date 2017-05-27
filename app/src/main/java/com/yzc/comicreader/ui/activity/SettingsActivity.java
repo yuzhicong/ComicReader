@@ -27,9 +27,15 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.GlideBuilder;
+import com.bumptech.glide.load.DecodeFormat;
 import com.yzc.comicreader.R;
+import com.yzc.comicreader.config.GlideConfiguration;
 import com.yzc.comicreader.util.Util;
 
 import java.util.List;
@@ -86,7 +92,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     }
                 }
             } else if (preference instanceof SwitchPreference) {
-
+                if(preference.getKey().equals("high_quality_picture_mode")){
+                    //
+                    GlideBuilder glideBuilder = new GlideBuilder(SettingsActivity.this);
+                    glideBuilder.setDecodeFormat(DecodeFormat.PREFER_ARGB_8888);
+                    GlideConfiguration config = new GlideConfiguration();
+                    config.applyOptions(SettingsActivity.this,glideBuilder);
+                }
 
             } else {
                 // For all other preferences, set the summary to the value's
@@ -169,27 +181,42 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     public void initTheme(){
         theme = Util.getStringPreference(this,"app_theme");
+        int statusBarColor;
         switch (theme){
             case "0":{
                 setTheme(R.style.AppTheme_NoActionBar);
+                statusBarColor = getResources().getColor(R.color.colorPrimaryDark);
                 break;
             }
             case "1":{
                 setTheme(R.style.AppThemeSasuke);
+                statusBarColor = getResources().getColor(R.color.sasuke_colorPrimaryDark);
                 break;
             }
             case "2":{
                 setTheme(R.style.AppThemeSakura);
+                statusBarColor = getResources().getColor(R.color.sakura_colorPrimaryDark);
                 break;
             }
             case "3":{
                 setTheme(R.style.AppThemeRockLee);
+                statusBarColor = getResources().getColor(R.color.rocklee_colorPrimaryDark);
                 break;
             }
             default:{
                 setTheme(R.style.AppTheme_NoActionBar);
+                statusBarColor = getResources().getColor(R.color.colorPrimaryDark);
                 break;
             }
+        }
+        if(Build.VERSION.SDK_INT > 20) {
+            Window window = this.getWindow();
+            //取消设置透明状态栏,使 ContentView 内容不再覆盖状态栏
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //需要设置这个 flag 才能调用 setStatusBarColor 来设置状态栏颜色
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            //设置状态栏颜色
+            getWindow().setStatusBarColor(statusBarColor);
         }
     }
 }

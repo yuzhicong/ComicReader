@@ -7,10 +7,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:icon">@mipmap/ic_launcher</item>
-
-        <item name="android:startColor">#ef8b47</item>
-        <item name="android:centerColor">#f59d64</item>
-        <item name="android:endColor">#f5ad7e</item>
     </style>
 
     <style name="AppThemeSasuke" parent="AppTheme.NoActionBar">
@@ -61,7 +57,7 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlNormal">@color/gray</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

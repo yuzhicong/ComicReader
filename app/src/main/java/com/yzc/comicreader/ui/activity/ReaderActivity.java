@@ -5,9 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -16,6 +19,7 @@ import com.yzc.comicreader.adapter.BookPageAdapter;
 import com.yzc.comicreader.database.ComicDbHelper;
 import com.yzc.comicreader.model.ComicBook;
 import com.yzc.comicreader.util.PagingScrollHelper;
+import com.yzc.comicreader.util.RecyclerViewClickListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +55,12 @@ public class ReaderActivity extends BaseActivity implements View.OnClickListener
     @BindView(R.id.nightView)
     public View nightView;
 
+    @BindView(R.id.toolbarReader)
+    public Toolbar toolbar;
+
+    @BindView(R.id.readingToolbar)
+    public LinearLayout readingToolbar;
+
     public static int READ_MODE_SWIPE = 0;
     public static int READ_MODE_SCROLL = 1;
 
@@ -59,6 +69,7 @@ public class ReaderActivity extends BaseActivity implements View.OnClickListener
     private BookPageAdapter adapter;
     private LinearLayoutManager hLinearLayoutManager;
     private LinearLayoutManager vLinearLayoutManager;
+    private boolean isShowReadingToolbar = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +82,10 @@ public class ReaderActivity extends BaseActivity implements View.OnClickListener
         if(book != null){
             Log.e("ReaderActivity",book.toString());
         }
+
+        toolbar.setTitle(book.getBookName());
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         adapter = new BookPageAdapter(getApplicationContext(),book);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -87,6 +102,29 @@ public class ReaderActivity extends BaseActivity implements View.OnClickListener
         rvBookPage.setLayoutManager(hLinearLayoutManager);
         rvBookPage.setAdapter(adapter);
         //rvBookPage.addItemDecoration(itemDecoration);
+
+        rvBookPage.addOnItemTouchListener(new RecyclerViewClickListener(this, rvBookPage, new RecyclerViewClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Log.e("rvBookPage",view.getId() + " onItemClick()");
+                if(isShowReadingToolbar == true){
+                    toolbar.setVisibility(View.INVISIBLE);
+                    readingToolbar.setVisibility(View.INVISIBLE);
+                    isShowReadingToolbar = false;
+                }else{
+                    toolbar.setVisibility(View.VISIBLE);
+                    readingToolbar.setVisibility(View.VISIBLE);
+                    isShowReadingToolbar = true;
+                }
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        }));
+
+
 
         SHonPageChangeListener = new PagingScrollHelper.onPageChangeListener() {
             @Override
@@ -233,6 +271,15 @@ public class ReaderActivity extends BaseActivity implements View.OnClickListener
         ComicDbHelper.getComicDBHelper(this).updateComicBook(book);
         setResult(RESULT_OK,null);
         super.onPause();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home){
+            ReaderActivity.this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

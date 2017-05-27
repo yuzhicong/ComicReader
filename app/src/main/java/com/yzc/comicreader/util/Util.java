@@ -82,4 +82,9 @@ public class Util {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         return sp.getString(key,"");
     }
+
+    public static boolean getBooleanPreference(Context context, String key){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        return sp.getBoolean(key,true);
+    }
 }

@@ -2,6 +2,7 @@ package com.yzc.comicreader;
 
 import android.app.Application;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.pm.PackageManager;
 
 import com.yzc.comicreader.util.Util;
@@ -13,10 +14,11 @@ import com.yzc.comicreader.util.Util;
 public class App extends Application {
 
     public String startTheme;
-
+    public static Context mContext;
     @Override
     public void onCreate() {
         super.onCreate();
+        mContext = this;
     }
 
     @Override

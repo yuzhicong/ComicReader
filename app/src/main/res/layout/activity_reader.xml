@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.yzc.comicreader.ui.activity.ReaderActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvBookPage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="true"
         android:layout_gravity="center"/>
 
     <RelativeLayout
@@ -21,16 +23,22 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_alignParentTop="true"
-            android:background="@color/gray_white"
-            android:visibility="gone"/>
+            android:background="?attr/colorPrimary"
+            app:titleTextAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            app:titleTextColor="@color/white"
+            app:navigationIcon="?homeAsUpIndicator"
+            android:visibility="visible"/>
 
         <LinearLayout
+            android:id="@+id/readingToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@color/gray_white"
+            android:background="?attr/colorPrimary"
+            android:alpha="33"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,13 +50,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingTop="4dp" />
+                    android:paddingTop="8dp" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tvProcess"
-                    android:layout_width="48dp"
+                    android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="8dp"
+                    android:textColor="@color/white"
                     android:gravity="center"/>
             </LinearLayout>
 
@@ -56,6 +65,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="4dp"
                 android:weightSum="4">
 
                 <android.support.v7.widget.AppCompatButton
