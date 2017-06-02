@@ -1,5 +1,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory
+        android:title="Performance">
     <ListPreference
         android:key="app_theme"
         android:entries="@array/pref_theme"
@@ -35,5 +37,6 @@
         android:icon="@null"
         android:summary="@string/high_quality_picture_mode_summary"
         android:title="@string/high_quality_picture_mode" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

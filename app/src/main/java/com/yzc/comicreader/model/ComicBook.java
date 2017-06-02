@@ -2,7 +2,11 @@ package com.yzc.comicreader.model;
 
 import android.content.Context;
 
+import com.yzc.comicreader.util.Util;
+
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 
 /**
@@ -53,7 +57,15 @@ public class ComicBook implements Serializable{
                     String tempfilePath = tempfile.getAbsolutePath().toLowerCase();
                     if(tempfilePath.endsWith("jpg")||tempfilePath.endsWith("png")||tempfilePath.endsWith("jpeg")){
                         if(!isFindBookCover){
-                            this.bookCover = tempfile.getAbsolutePath();
+                            File copyFile = new File(tempfile.getAbsolutePath().replace(".Comic",".ComicbookCover"));
+                            try {
+                                copyFile.createNewFile();
+                                Util.copyFileUsingFileChannels(tempfile,copyFile);
+                                this.bookCover = copyFile.getAbsolutePath();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                this.bookCover = tempfile.getAbsolutePath();
+                            }
                             isFindBookCover = true;//将遍历遇到的第一张图片作为漫画封面
                         }
                         countingpage++;//统计漫画页数

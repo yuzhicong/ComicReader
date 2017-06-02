@@ -67,7 +67,7 @@
     <string name="remove_password_title">Remove Password</string>
     <string name="remove_password_message">Are you sure to remove this password from the Decompress Password?</string>
     <string name="edit_password_title">Edit Decompress Password</string>
-    <string name="use_password_library_to_match">use password library to match</string>
+    <string name="use_password_library_to_match">use password library to match decompress password</string>
     <string name="this_comic_file_need_password">This comic file need password</string>
     <string name="app_descript">A Simple Local Comic File Reader</string>
     <string name="title_activity_settings">Settings</string>
@@ -181,5 +181,6 @@
     <string name="high_quality_picture_mode">High quality picture mode</string>
     <string name="high_quality_picture_mode_summary">Using high quality mode to load pictures may affect application performance</string>
     <string name="settings_theme">Theme</string>
+    <string name="no_matching_password">No matching decompression password in password Library!</string>
 
 </resources>

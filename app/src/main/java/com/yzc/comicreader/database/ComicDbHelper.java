@@ -84,6 +84,8 @@ public class ComicDbHelper extends SQLiteOpenHelper {
             db.delete("comicbooks", "filepath=?", new String[]{book.getFilePath()});
             db.close();
 
+            //删除漫画封面文件
+            Util.deleteAllFilesOfDir(new File(book.getBookCover()));
             //删除本地解压缓存文件
             Util.deleteAllFilesOfDir(new File(book.getSrcPath()));
 

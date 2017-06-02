@@ -78,9 +78,10 @@
     </string-array>
 
     <string name="decompress_password">解压密码</string>
-    <string name="use_password_library_to_match">使用密码库去匹配</string>
+    <string name="use_password_library_to_match">使用密码库去匹配解压密码</string>
     <string name="menu_others">其它</string>
     <string name="settings_theme">主题</string>
     <string name="high_quality_picture_mode">高质量图片模式</string>
     <string name="high_quality_picture_mode_summary">使用高质量模式去加载图片可能影响应用性能</string>
+    <string name="no_matching_password">密码库中无匹配解压密码！</string>
 </resources>

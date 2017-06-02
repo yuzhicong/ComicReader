@@ -38,6 +38,10 @@ public class DecompressPasswordInputFragment extends DialogFragment {
     private CheckBox cbUsePasswordLibrary;
     private String dirPath;
     private BookCollectionActivity mActivity;
+    private List<Password> lists;
+    private int index = 0;
+    private ComicDbHelper helper;
+    private String outputPath;
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -48,7 +52,9 @@ public class DecompressPasswordInputFragment extends DialogFragment {
         etDCpassword = (EditText) contentView.findViewById(R.id.etDCpassword);
         cbUsePasswordLibrary = (CheckBox) contentView.findViewById(R.id.cbUsePasswordLibrary);
 
+        helper = ComicDbHelper.getComicDBHelper(getActivity());
         dirPath = (String) getArguments().getCharSequence("dirPath");
+        outputPath = getActivity().getExternalCacheDir().getAbsolutePath() + "/.Comic/" + ComicBook.parseBookname(dirPath);
 
         mActivity = (BookCollectionActivity) getActivity();
 
@@ -72,15 +78,18 @@ public class DecompressPasswordInputFragment extends DialogFragment {
                                     mFragmentTransaction.remove(DecompressPasswordInputFragment.this);
                                     mFragmentTransaction.addToBackStack(null);
                                     mFragmentTransaction.commit();
-                                    List<Password> lists = new ArrayList<Password>();
+                                    lists = new ArrayList<Password>();
                                     Password password = new Password();
                                     password.setPassword(etDCpassword.getText().toString());
                                     lists.add(password);
-                                    DecompressComicfile(lists);
+                                    index = 0;
+                                    DecompressComicfile();
                                 }
                             }else{
                                 //使用密码库自动匹配
-                                DecompressComicfile(PasswordDbHelper.getPasswordDbHelper(getActivity()).queryPasswords());
+                                lists = PasswordDbHelper.getPasswordDbHelper(getActivity()).queryPasswords();
+                                index = 0;
+                                DecompressComicfile();
                             }
                         }
 
@@ -112,57 +121,60 @@ public class DecompressPasswordInputFragment extends DialogFragment {
 
     private boolean isSuccess = false;
 
-    void DecompressComicfile(final List<Password> lists){
-        //使用用户输入的密码
-        final ComicDbHelper helper = ComicDbHelper.getComicDBHelper(getActivity());
+    void DecompressComicfile(){
 
-        final String outputPath = getActivity().getExternalCacheDir().getAbsolutePath() + "/.Comic/" + ComicBook.parseBookname(dirPath);
-
-        for(Password password : lists){
+            Password password = lists.get(index);
             String decompressCommand = ZipCommandUtil.getDecompressCommand(dirPath,
                     outputPath,true,password.getPassword(),ZipCommandUtil.OverWriteMode.OVERWRITE_ALL_EXISTING_FILE,null);
 
             Log.e("Decompress:",decompressCommand);
-            ZipProcess zipProcess = new ZipProcess(getActivity(),decompressCommand,dirPath);
+            Log.e("UsePassword: ",password.getPassword());
+            ZipProcess zipProcess = new ZipProcess(mActivity,decompressCommand,dirPath);
 
-            zipProcess.setZipProcessListener(new ZipProcess.ZipProcessListenner() {
+            zipProcess.setZipProcessListener(listenner);
+            index++;
+            zipProcess.start();//开始解压
+
+    }
+
+    private ZipProcess.ZipProcessListenner listenner = new ZipProcess.ZipProcessListenner() {
+        @Override
+        public void onZipSuccess(final ProgressDialog dialog) {//需要运行在非ui线程否则会卡顿
+            dialog.setTitle(mActivity.getResources().getString(R.string.analyse_title));
+            dialog.setMessage(mActivity.getResources().getString(R.string.analyse_message));
+            new Thread(new Runnable() {
                 @Override
-                public void onZipSuccess(final ProgressDialog dialog) {//需要运行在非ui线程否则会卡顿
-                    dialog.setTitle(mActivity.getResources().getString(R.string.analyse_title));
-                    dialog.setMessage(mActivity.getResources().getString(R.string.analyse_message));
-                    new Thread(new Runnable() {
+                public void run() {
+                    final boolean canInsert = helper.insertComicBook(new ComicBook(getActivity(),dirPath,outputPath,""));
+                    dialog.dismiss();
+                    mActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            final boolean canInsert = helper.insertComicBook(new ComicBook(getActivity(),dirPath,outputPath,""));
-                            dialog.dismiss();
-                            mActivity.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if(canInsert){
-                                        mActivity.adapter.refreshBookList(null);
-                                        mActivity.showMessage(mActivity.getResources().getString(R.string.add_book_success));
-                                    }else{
-                                        mActivity.showMessage(mActivity.getResources().getString(R.string.add_book_failure));
-                                    }
-                                    isSuccess = true;
-                                }
-                            });
+                            if(canInsert){
+                                mActivity.adapter.refreshBookList(null);
+                                mActivity.showMessage(mActivity.getResources().getString(R.string.add_book_success));
+                            }else{
+                                mActivity.showMessage(mActivity.getResources().getString(R.string.add_book_failure));
+                            }
+                            isSuccess = true;
                         }
-                    }).start();
-
+                    });
                 }
+            }).start();
 
-                @Override
-                public void onZipFault(ProgressDialog dialog) {
-                    dialog.dismiss();
-                    if(lists.size() == 1) {
-                        getFragmentManager().popBackStack();
-                        mActivity.showMessage(getString(R.string.add_book_failure));
-                    }
-                }
-            });
-
-            zipProcess.start();//开始解压
         }
-    }
+
+        @Override
+        public void onZipFault(ProgressDialog dialog) {
+            dialog.dismiss();
+            if(index == lists.size()) {
+                //getFragmentManager().popBackStack(); 暂时失败就直接结束，添加流程， 而不重写显示 输入密码框
+                mActivity.showMessage(mActivity.getString(R.string.no_matching_password));
+
+            }else{
+                //使用下一个密码继续尝试解压
+                DecompressComicfile();
+            }
+        }
+    };
 }
